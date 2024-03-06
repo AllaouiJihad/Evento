@@ -23,6 +23,7 @@ Route::post('/addEvent',[EventController::class, 'store'])->name('event.store');
 Route::get('addticket/{id}',[TicketController::class, 'create'])->name('ticket.create');
 Route::post('/addticket',[TicketController::class, 'store'])->name('ticket.store');
 
+Route::get('event/{id}',[EventController::class, 'getEvent'])->name('event.get');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

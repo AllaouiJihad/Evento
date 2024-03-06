@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Category;
+use App\Models\Ticket;
 
 class EventController extends Controller
 {
@@ -61,6 +62,19 @@ class EventController extends Controller
 
     public function getEvents(){
         return view('events');
+    }
+
+    public function getEvent($id){
+        $event = Event::with('category')->with('user')->with('tickets')->where('id',$id)->first();
+        $nbr_places=0;
+        
+       
+        foreach($event->tickets as $ticket) {
+            
+            $nbr_places = $nbr_places+ $ticket->places_nbr;
+        }
+        
+        return view('event',compact('event','nbr_places'));
     }
 
     /**

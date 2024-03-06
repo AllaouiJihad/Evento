@@ -54,7 +54,7 @@ class TicketController extends Controller
         ]);
         
         if ($ticket != NULL) {
-            return redirect()->route('home');
+            return redirect()->back()->with('success', 'Tickets ajoutés avec succès ! Vous pouvez ajouter un autre type de ticket.');
         }
         else{
             return redirect()->back()->withErrors(['message' => 'Une erreur est survenue lors de la création du ticket.']);
