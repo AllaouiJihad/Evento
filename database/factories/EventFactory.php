@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,19 @@ class EventFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    protected $model = Event::class;
+
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'date' => $this->faker->dateTimeBetween('now', '+1 year'),
+            'acceptation' => $this->faker->boolean,
+            'location' => $this->faker->address,
+            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
+            'category_id' => \App\Models\Category::inRandomOrder()->first()->id,
         ];
     }
 }

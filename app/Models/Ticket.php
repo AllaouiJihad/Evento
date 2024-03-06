@@ -11,5 +11,11 @@ class Ticket extends Model
     protected $fillable = [
         'price',
         'places_nbr',
+        'event_id',
+        'type'
     ];
+
+    public function event(){
+        return $this->belongsTo(Event::class);
+    }
 }

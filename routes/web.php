@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [EventController::class , 'index'])->name('home');
+Route::get('/addEvent',[EventController::class, 'create'])->name('event.create');
+Route::post('/addEvent',[EventController::class, 'store'])->name('event.store');
+
+Route::get('addticket/{id}',[TicketController::class, 'create'])->name('ticket.create');
+Route::post('/addticket',[TicketController::class, 'store'])->name('ticket.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

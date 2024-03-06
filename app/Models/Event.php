@@ -9,11 +9,26 @@ class Event extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
         'title',
         'description',
         'date',
         'acceptation',
         'location',
+        'user_id',
+        'media',
+        'category_id',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function tickets(){
+        return $this->hasMany(Ticket::class);
+    }
+
 }
