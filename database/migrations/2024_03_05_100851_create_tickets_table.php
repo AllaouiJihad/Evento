@@ -16,7 +16,7 @@ return new class extends Migration
             $table->float('price', 8, 2);
             $table->integer('places_nbr');
             $table->unsignedBigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
             $table->timestamps();
         });
     }

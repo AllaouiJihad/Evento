@@ -59,6 +59,10 @@ class EventController extends Controller
         }
     }
 
+    public function getEvents(){
+        return view('events');
+    }
+
     /**
      * Display the specified resource.
      */

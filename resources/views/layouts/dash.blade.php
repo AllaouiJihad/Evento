@@ -7,7 +7,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
-
+    <link rel="stylesheet" href="{{ asset('assets/style.min.css') }}">
     <title>Evento</title>
     <!-- <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" /> -->
     <!-- Custom CSS -->
@@ -50,7 +50,7 @@
                     <!-- Logo -->
                     <!-- ============================================================== -->
                     <a class="navbar-brand text-dark font-weight-bold" href="dashboard.html">
-                        WIKI
+                        Evento
                     </a>
                     <!-- ============================================================== -->
                     <!-- End Logo -->
@@ -103,7 +103,7 @@
                                             height="25"
                                             alt="Black and White Portrait of a Man"
                                             loading="lazy"
-                                        /><?=$_SESSION['firstname']?></span></a>
+                                        /> {{ Auth::user()->name }}</span></a>
                         </li>
                         </li>
                         <!-- ============================================================== -->
@@ -139,10 +139,12 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/profile"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('profile.edit') }}"
                                 aria-expanded="false">
+                                
+                                                        
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hide-menu">Profile</span>
+                                <span class="hide-menu">{{ __('Profile') }}</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -182,11 +184,15 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/logout"
-                                aria-expanded="false">
-                                <i class="fa-solid fa-right-from-bracket"></i>
-                                <span class="hide-menu">Lougout</span>
-                            </a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+    
+                                <x-dropdown-link :href="route('logout')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
                         </li>
                       
                     </ul>
@@ -209,7 +215,7 @@
             <!-- ============================================================== -->
             <div class="container-fluid">
                
-                {{@admincontent}}
+                @yield('content')
                
             </div>
             <!-- ============================================================== -->
