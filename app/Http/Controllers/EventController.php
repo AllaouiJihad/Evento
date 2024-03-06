@@ -15,7 +15,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+        $events = Event::where('status',0)->get();
 
         return view('welcome', compact('events'));
     }
@@ -61,7 +61,9 @@ class EventController extends Controller
     }
 
     public function getEvents(){
-        return view('events');
+        $events = Event::where('status',1)->with('user')->get();
+        
+        return view('events', compact('events'));
     }
 
     public function getEvent($id){
@@ -77,6 +79,12 @@ class EventController extends Controller
         return view('event',compact('event','nbr_places'));
     }
 
+    public function acceptEvent($id){
+        $event = Event::find($id);
+        $event->status = 0;
+        $event->save();
+        return redirect()->route('events.getEvents');
+    }
     /**
      * Display the specified resource.
      */

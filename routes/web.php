@@ -24,6 +24,9 @@ Route::get('addticket/{id}',[TicketController::class, 'create'])->name('ticket.c
 Route::post('/addticket',[TicketController::class, 'store'])->name('ticket.store');
 
 Route::get('event/{id}',[EventController::class, 'getEvent'])->name('event.get');
+Route::put('/events/{id}',[EventController::class, 'acceptEvent'])->name('accept.event');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

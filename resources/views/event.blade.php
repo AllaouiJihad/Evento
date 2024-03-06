@@ -119,7 +119,7 @@
                             <div class="icon">
                                 <i class="fa fa-table"></i>
                             </div>
-                            <p>Monday 15th 2016 <br />{{ $ticket->price }} DH</p>
+                            <p>{{\Carbon\Carbon::parse($event->date)->format('d')}}th 2024 <br />{{ $ticket->price }} DH</p>
                         </div>
                         <div class="fix"></div>
                         <div class="loc">

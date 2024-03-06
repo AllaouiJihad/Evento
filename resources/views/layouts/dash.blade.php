@@ -151,7 +151,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/users"
                                 aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Utilisateurs</span>
+                                <span class="hide-menu">Acceptation</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -165,7 +165,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/wikis"
                                 aria-expanded="false">
                                 <i class="fa fa-font" aria-hidden="true"></i>
-                                <span class="hide-menu">WIKIS</span>
+                                <span class="hide-menu"></span>
                             </a>
                         </li>
                       
