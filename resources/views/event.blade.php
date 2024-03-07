@@ -8,11 +8,8 @@
     <title>Evento</title>
 
     <!-- Fonts -->
-        <!-- Font Awesome -->
-  <link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-  rel="stylesheet"
-/>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -90,50 +87,63 @@
                     <div class="col m-5">
                         <h5>fondateur : {{ $event->user->name }}</h5>
                         <p>
-                            <i class="fa-solid fa-table-list" style="color: #cca414;"></i> 
-                            {{$event->category->name}}
+                            <i class="fa-solid fa-table-list" style="color: #cca414;"></i>
+                            {{ $event->category->name }}
                         </p>
                         <p class="text ">
                             {{ $event->description }}
                         </p>
-                        <h5><i class="fa-solid fa-ticket" style="color: #467eb9;"></i> Nombre de places disponaible : <strong style="color: #467eb9;">{{$nbr_places}}</strong></h5>
+                        <h5><i class="fa-solid fa-ticket" style="color: #467eb9;"></i> Nombre de places disponaible :
+                            <strong style="color: #467eb9;">{{ $nbr_places }}</strong>
+                        </h5>
                     </div>
 
                 </div>
-                @foreach ($event->tickets as $ticket )
-                    
-                
-                <div class="item">
-                    <div class="item-right">
-                        <h2 class="num">{{\Carbon\Carbon::parse($event->date)->format('d')}}</h2>
-                        <p class="day">{{\Carbon\Carbon::parse($event->date)->format('F')}}</p>
-                        <span class="up-border"></span>
-                        <span class="down-border"></span>
-                    </div> <!-- end item-right -->
+                @foreach ($event->tickets as $ticket)
+                    <div class="item">
+                        <div class="item-right">
+                            <h2 class="num">{{ \Carbon\Carbon::parse($event->date)->format('d') }}</h2>
+                            <p class="day">{{ \Carbon\Carbon::parse($event->date)->format('F') }}</p>
+                            <span class="up-border"></span>
+                            <span class="down-border"></span>
+                        </div> <!-- end item-right -->
 
-                    <div class="item-left">
-                        <p class="event"># {{ rand(1000, 9999) }} |<i  style="color: #FFD43B;">{{ $ticket->type}}</i> </p>
-                        <h2 class="title">Live In Sydney</h2>
+                        <div class="item-left">
+                            <p class="event"># {{ rand(1000, 9999) }} |<i
+                                    style="color: #FFD43B;">{{ $ticket->type }}</i> </p>
+                            <h2 class="title">Live In Sydney</h2>
 
-                        <div class="sce">
-                            <div class="icon">
-                                <i class="fa fa-table"></i>
+                            <div class="sce">
+                                <div class="icon">
+                                    <i class="fa fa-table"></i>
+                                </div>
+                                <p>{{ \Carbon\Carbon::parse($event->date)->format('d') }}th 2024
+                                    <br />{{ $ticket->price }} DH
+                                </p>
                             </div>
-                            <p>{{\Carbon\Carbon::parse($event->date)->format('d')}}th 2024 <br />{{ $ticket->price }} DH</p>
-                        </div>
-                        <div class="fix"></div>
-                        <div class="loc">
-                            <div class="icon">
-                                <i class="fa fa-map-marker"></i>
+                            <div class="fix"></div>
+                            <div class="loc">
+                                <div class="icon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <p>{{ $event->location }}<br />  Party Number 16,20</p>
                             </div>
-                            <p>{{$event->location}}<br /> Party Number 16,20</p>
-                        </div>
-                        <div class="fix"></div>
-                        <button class="tickets">Tickets</button>
-                    </div> <!-- end item-right -->
-                </div> <!-- end item -->
+                            <div class="fix"></div>
+                            @if ($nbr_places != 0)
+                                <form action="{{ route('reserve') }}" method="POST">
+                                @csrf
+                                <input value="{{ $event->acceptation }}" type="hidden" name="status">
+                                <input value="{{ $ticket->id }}" type="hidden" name="ticket_id">
+                                <button type="submit" class="tickets">Réserver</button>
+                            </form>
+                            @else
+                            <button class="tickets">SOLDE OUT</button>
+                            @endif
+                            
+                        </div> <!-- end item-right -->
+                    </div> <!-- end item -->
                 @endforeach
-                
+
             </div>
 
 

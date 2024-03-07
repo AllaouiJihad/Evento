@@ -92,8 +92,8 @@
                 <label class="mr-sm-2" for="inlineFormCustomSelect">Acceptation</label>
                 <select name="acceptation" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                     <option selected>Choisissez...</option>
-                    <option value="1">oui</option>
-                    <option value="0">non</option>
+                    <option value="1">acceptation automatique</option>
+                    <option value="0">validation manuelle</option>
                 </select>
             </div>
             <div class="border p-5 mb-4">

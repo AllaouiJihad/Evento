@@ -31,33 +31,34 @@
                         @auth
                             <li class="nav-item"><a href="{{ route('event.create') }}" class="nav-link">Ajouter
                                     Evenement</a></li>
-                                    <div class="d-none d-sm-flex align-items-center ms-6">
-                                        <div class="dropdown">
-                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                {{ Auth::user()->name }}
-                                                <svg class="bi bi-caret-down-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                                    <path d="M8 11.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 11.708-.708L8 11.293z"/>
-                                                </svg>
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <li>
-                                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                                        {{ __('Profile') }}
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <form method="POST" action="{{ route('logout') }}">
-                                                        @csrf
-                                                        <button type="submit" class="dropdown-item">
-                                                            {{ __('Log Out') }}
-                                                        </button>
-                                                    </form>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    
-
+                            <div class="d-none d-sm-flex align-items-center ms-6">
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ Auth::user()->name }}
+                                        <svg class="bi bi-caret-down-fill" xmlns="http://www.w3.org/2000/svg" width="16"
+                                            height="16" fill="currentColor" viewBox="0 0 16 16">
+                                            <path
+                                                d="M8 11.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 11.708-.708L8 11.293z" />
+                                        </svg>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                                {{ __('Profile') }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <button type="submit" class="dropdown-item">
+                                                    {{ __('Log Out') }}
+                                                </button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         @else
                             <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Log in</a></li>
                             @if (Route::has('register'))
@@ -73,29 +74,34 @@
     <section class="wrapper">
         <div class="container">
             <div class="row">
+                @if (session('success'))
+                    <div class="alert alert-success" id="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="col text-center mb-5">
                     <h2 class="display-4 font-weight-bolder">Événements à venir</h2>
                 </div>
             </div>
             <div class="row">
                 @foreach ($events as $event)
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        @if ($event->media)
-                            
-                        
-                        <img class="card-img-top" src="{{asset('storage/' . $event->media) }}" alt="{{ $event->title }}">
-                        @endif
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $event->title }}</h5>
-                            <p class="card-text">{{ $event->date }}</p>
-                            <a href="{{route('event.get',$event->id)}}" class="btn btn-primary">Voir les détails</a>
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            @if ($event->media)
+                                <img class="card-img-top" src="{{ asset('storage/' . $event->media) }}"
+                                    alt="{{ $event->title }}">
+                            @endif
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $event->title }}</h5>
+                                <p class="card-text">{{ $event->date }}</p>
+                                <a href="{{ route('event.get', $event->id) }}" class="btn btn-primary">Voir les
+                                    détails</a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
-            
+
         </div>
     </section>
 
