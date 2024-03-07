@@ -14,13 +14,12 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Styles -->
 
-
 </head>
 
 <body class="antialiased">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a href="#" class="navbar-brand">Evento</a>
+            <a href="/" class="navbar-brand">Evento</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -71,44 +70,49 @@
         </div>
     </nav>
 
-    <section class="wrapper">
-        <div class="container">
-            <div class="row">
-                @if (session('success'))
-                    <div class="alert alert-success" id="alert">
-                        {{ session('success') }}
-                    </div>
-                @endif
-                <div class="col text-center mb-5">
-                    <h2 class="display-4 font-weight-bolder">Événements à venir</h2>
-                </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col text-center mb-5">
+                <h2 class="display-4 font-weight-bolder">Ajouter les tickets de votre Événement</h2>
             </div>
-            <div class="row">
-                @foreach ($events as $event)
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            @if ($event->media)
-                                <img class="card-img-top" src="{{ asset('storage/' . $event->media) }}"
-                                    alt="{{ $event->title }}">
-                            @endif
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $event->title }}</h5>
-                                <p class="card-text">{{ $event->date }}</p>
-                                <a href="{{ route('event.get', $event->id) }}" class="btn btn-primary">Voir les
-                                    détails</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
         </div>
-    </section>
-
-
-
-
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        @if (session('success'))
+            <div class="alert alert-success" id="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+        <form method="POST" action="{{ route('ticket.store') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group mt-2">
+                <label for="exampleFormControlInput1">prix (DH) :</label>
+                <input type="number" name="price" step="0.01" class="form-control" id="exampleFormControlInput1">
+            </div>
+            <input type="hidden" name="event_id" value="{{ $id }}">
+            <div class="form-group mt-2">
+                <label for="exampleFormControlTextarea1">Nombre de tickets :</label>
+                <input name="places_nbr" type="number" class="form-control" id="exampleFormControlTextarea1">
+            </div>
+            <div class="col-auto my-1">
+                <label class="mr-sm-2" for="inlineFormCustomSelect">Type :</label>
+                <select name="type" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option selected>Choisissez...</option>
+                    <option value="vip">VIP</option>
+                    <option value="Standard">Standard</option>
+                </select>
+            </div>
+            <a class="btn border mt-2" href="/">Acceuil</a>
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        </form>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
