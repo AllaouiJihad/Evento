@@ -13,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('categories', compact('categories'));
     }
 
     /**
@@ -29,7 +30,25 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $validate = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+
+        $category = Category::create([
+            'name' => $validate['name'],
+        ]);
+        if ($category != NULL) {
+            return redirect()->back();
+        }
+    }
+
+    public function CategoryEvents($category)
+    {
+        $events = Category::with(['events' => function ($query) {
+            $query->where('status', 0);
+        }])->where('id', $category)->first();
+        return view('category_events', compact('events'));
     }
 
     /**
@@ -43,15 +62,18 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(UpdateCategoryRequest $request)
     {
-        //
+        $category = Category::find($request->id);
+        $category->name = $request->input('name');
+        $category->save();
+        return redirect()->back();
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update()
     {
         //
     }
@@ -61,6 +83,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->back();
     }
 }

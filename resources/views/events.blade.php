@@ -72,9 +72,9 @@
                                 <tr>
                                     <td>{{ $event->id }}</td>
                                     <td class="txt-oflo">{{ $event->title }}</td>
-                                    <td class="txt-oflo">{{ $event->created_at->format('d-m-y') }}</td>
+                                    <td class="txt-oflo">{{ \Carbon\Carbon::parse($event->created_at)->format('d-m-y') }}</td>
                                     <td class="txt-oflo">{{ $event->date }}</td>
-                                    <td class="txt-oflo">{{ $event->user->name }}</td>
+                                    <td class="txt-oflo">{{ $event->name }}</td>
                                     <td>
                                         <form method="POST" action="{{ route('accept.event',$event->id) }}">
                                             @csrf

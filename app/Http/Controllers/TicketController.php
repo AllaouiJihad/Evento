@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ticket;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -61,6 +62,12 @@ class TicketController extends Controller
         }
     }
 
+
+
+    public function getTickets($event){
+        $tickets = Event::where('id', $event)->first();
+        return view('gestion_reservation',compact('tickets'));
+    }
     /**
      * Display the specified resource.
      */

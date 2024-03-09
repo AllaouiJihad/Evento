@@ -15,22 +15,13 @@
     <link rel="stylesheet" href="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
     <!-- Custom CSS -->
     <link href="css/style.min.css" rel="stylesheet">
-        <!-- Font Awesome -->
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    rel="stylesheet"
-  />
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    rel="stylesheet"
-  />
-  <!-- MDB -->
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
-    rel="stylesheet"
-  />
-   
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -49,7 +40,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand text-dark font-weight-bold" href="dashboard.html">
+                    <a class="navbar-brand text-dark font-weight-bold" href="/">
                         Evento
                     </a>
                     <!-- ============================================================== -->
@@ -57,13 +48,13 @@
                     <!-- ============================================================== -->
                     <!-- ============================================================== -->
                     <!-- toggle and nav items -->
-                    
+
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                   
+
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
@@ -72,49 +63,38 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        
+
                         <li>
-                        <div class="dropdown me-">
-                                <a
-                                    data-mdb-dropdown-init
+                            <div class="dropdown me-">
+                                <a data-mdb-dropdown-init
                                     class="dropdown-toggle d-flex align-items-center hidden-arrow me-2 ms-2"
-                                    href="#"
-                                    id="navbarDropdownMenuAvatar"
-                                    role="button"
-                                    aria-expanded="false">
-                                        
-                                 </a>
-                                <ul
-                                    class="dropdown-menu dropdown-menu-end "
-                                    aria-labelledby="navbarDropdownMenuAvatar"
-                                    >
-                                   
+                                    href="#" id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
+
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="navbarDropdownMenuAvatar">
+
                                     <li>
                                         <a class="dropdown-item" href="/logout">Logout</a>
                                     </li>
                                 </ul>
-                        </div>
+                            </div>
 
                         <li>
                             <a class="profile-pic" href="#">
-                            <img
-                                            src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                                            class="rounded-circle"
-                                            height="25"
-                                            alt="Black and White Portrait of a Man"
-                                            loading="lazy"
-                                        /> {{ Auth::user()->name }}</span></a>
+                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle"
+                                    height="25" alt="Black and White Portrait of a Man" loading="lazy" />
+                                {{ Auth::user()->name }}</span></a>
                         </li>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        
+
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                     </ul>
-                    
+
                 </div>
             </nav>
         </header>
@@ -139,36 +119,30 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('profile.edit') }}"
-                                aria-expanded="false">
-                                
-                                                        
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('profile.edit') }}" aria-expanded="false">
+
+
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span class="hide-menu">{{ __('Profile') }}</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/users"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/events"
                                 aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
                                 <span class="hide-menu">Acceptation</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/archive"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/users"
                                 aria-expanded="false">
-                                <i class="fa-solid fa-box-archive"></i>
-                                <span class="hide-menu">Archive</span>
+                                <i class="fa-solid fa-users"></i>
+                                <span class="hide-menu">Utilisateurs</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/wikis"
-                                aria-expanded="false">
-                                <i class="fa fa-font" aria-hidden="true"></i>
-                                <span class="hide-menu"></span>
-                            </a>
-                        </li>
-                      
+
+
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/categories"
                                 aria-expanded="false">
@@ -176,25 +150,19 @@
                                 <span class="hide-menu">Categories</span>
                             </a>
                         </li>
+
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/tags"
-                                aria-expanded="false">
-                                <i class="fa fa-hashtag" aria-hidden="true"></i>
-                                <span class="hide-menu">Tags</span>
-                            </a>
+                            <div class="sidebar-link waves-effect waves-dark sidebar-link">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">
+                                        {{ __('Log Out') }}
+                                    </button>
+                                </form>
+                            </div>
                         </li>
-                        <li class="sidebar-item">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-    
-                                <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                                    {{ __('Log Out') }}
-                                </x-dropdown-link>
-                            </form>
-                        </li>
-                      
+
                     </ul>
 
                 </nav>
@@ -209,14 +177,14 @@
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
-            
+
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-               
+
                 @yield('content')
-               
+
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -255,11 +223,17 @@
     <script src="plugins/bower_components/chartist/dist/chartist.min.js"></script>
     <script src="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="js/pages/dashboards/dashboard1.js"></script>
-      <!-- MDB -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 
 </body>
 

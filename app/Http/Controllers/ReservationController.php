@@ -16,33 +16,30 @@ class ReservationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function reserve(StoreReservationRequest $request){
-        if(Auth::id() != NULL){
-            $nbr_ticket = DB::table('tickets')->select('places_nbr')->where('id',$request->input('ticket_id'))->value('places_nbr');
+    public function reserve(StoreReservationRequest $request)
+    {
+        if (Auth::id() != NULL) {
+            $nbr_ticket = DB::table('tickets')->select('places_nbr')->where('id', $request->input('ticket_id'))->value('places_nbr');
             $reservation = Reservation::create([
                 'ticket_id' => $request->input('ticket_id'),
                 'user_id' => Auth::id(),
                 'status' => $request->input('status'),
             ]);
-            
-           
-            if($reservation != NULL) {
+
+
+            if ($reservation != NULL) {
                 $nbr_places = $nbr_ticket - 1;
-                
-                DB::table('tickets')->where('id',$request->input('ticket_id'))->update(['places_nbr' => $nbr_places]);
-                if($reservation->status == 0){
+
+                DB::table('tickets')->where('id', $request->input('ticket_id'))->update(['places_nbr' => $nbr_places]);
+                if ($reservation->status == 0) {
                     return redirect()->route('home')->with('success', "Votre ticket a bien été enregistré. L'organisateur va traiter votre réservation.");
-                }else if($reservation->status == 1){
+                } else if ($reservation->status == 1) {
                     return redirect()->route('home')->with('success', "Votre ticket a bien été réservé");
                 }
-            
             }
-        }else{
+        } else {
             return redirect()->route('login');
         }
-        
-       
-
     }
     public function index()
     {
