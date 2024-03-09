@@ -41,6 +41,21 @@ class ReservationController extends Controller
             return redirect()->route('login');
         }
     }
+
+
+    public function getReservation($ticket)
+    {
+
+        $reservations = DB::table('reservations')
+            ->join('users', 'users.id', '=', 'reservations.user_id')
+            ->join('tickets', 'tickets.id', '=', 'reservations.ticket_id')
+            ->where('tickets.id', $ticket)
+            ->select('users.name', 'reservations.*','tickets.type')
+            ->get();
+            // dd($reservations);
+        return view('reservations',compact('reservations'));
+
+    }
     public function index()
     {
         //
@@ -83,7 +98,11 @@ class ReservationController extends Controller
      */
     public function update(UpdateReservationRequest $request, Reservation $reservation)
     {
-        //
+        $reservation = Reservation::find($request->input('id_reservation'));
+        $reservation->status = 1;
+        $reservation->save();
+        return redirect()->back();
+
     }
 
     /**

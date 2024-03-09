@@ -79,9 +79,13 @@ class TicketController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ticket $ticket)
+    public function edit(UpdateTicketRequest $request,Ticket $ticket)
     {
-        //
+        $ticket = Ticket::find($request->input('ticket_id'));
+        $ticket->type = $request->input('type');
+        $ticket->price = $request->input('price');
+        $ticket->save();
+        return redirect()->back();
     }
 
     /**

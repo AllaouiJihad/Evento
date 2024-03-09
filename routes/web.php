@@ -37,12 +37,19 @@ Route::middleware(['admin','auth'])->group(function () {
     Route::put('categories/',[CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/categories',[CategoryController::class, 'store'])->name('category.store');
 });
-
+// Organisateur
 Route::middleware(['organisateur','auth'])->group(function () {
     Route::get('/myevents',[EventController::class, 'getMyEvents'])->name('Myevents');
+
     Route::get('/myevents/tickets/{event}',[TicketController::class, 'getTickets'])->name('event.tickets');
 
+    Route::get('events/reservation/{ticket}',[ReservationController::class, 'getReservation'])->name('event.reservation');
+    Route::put('events/reservation/{ticket}',[ReservationController::class, 'update'])->name('conferme.reservation');
+
     Route::delete('myevents/{event}',[EventController::class, 'destroy'])->name('event.destroy');
+
+    Route::put('myevents/tickets/{event}',[TicketController::class, 'edit'])->name('ticket.edit');
+
 });
 
 

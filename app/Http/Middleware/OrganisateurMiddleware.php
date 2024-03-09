@@ -15,7 +15,7 @@ class OrganisateurMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->role_id == 2) {
+        if ($request->user()->role_id == 2 || $request->user()->role_id == 1) {
             return $next($request);
         }
         abort(403, 'Accès interdit. Vous n\'avez pas les autorisations nécessaires pour accéder à cette ressource.');
