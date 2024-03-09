@@ -14,6 +14,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Styles -->
 
+    <link rel="stylesheet" href="{{ asset('assets/cards_styl.css') }}">
 
 </head>
 
@@ -56,6 +57,9 @@
                                                 </button>
                                             </form>
                                         </li>
+                                        <li>
+                                            <a href="{{route('Myevents')}}" class="dropdown-item">Mes Événements</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -82,8 +86,17 @@
                 <div class="col text-center mb-5">
                     <h2 class="display-4 font-weight-bolder">Événements à venir</h2>
                 </div>
+
             </div>
-            <div class="row">
+            <div style="width :50% " class="input-group rounded ms-5 p-5">
+                <input type="search" id="search_title" class="form-control rounded" placeholder="Search" name="titles"
+                    aria-label="Search" aria-describedby="search-addon" />
+                <span class="input-group-text border-0" id="search-addon">
+                    <i class="fas fa-search"></i>
+                </span>
+            </div>
+
+            <div class="row" id="search_result">
                 @foreach ($events as $event)
                     <div class="col-md-4 mb-4">
                         <div class="card">
@@ -102,6 +115,41 @@
                 @endforeach
             </div>
 
+            <div class="col text-center mb-5">
+                <h2 class="display-4 font-weight-bolder">les Categories</h2>
+            </div>
+            <div class="container">
+                <div class="row">
+                    @foreach ($categories as $category)
+                        
+                   
+                    <div class="col-lg-4">
+                        <div class="card card-margin">
+                            <div class="card-header no-border">
+                                <h5 class="card-title">{{$category->name}}</h5>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="widget-49">
+                                    <div class="widget-49-title-wrapper">
+                                        <div class="widget-49-date-primary">
+                                            <span class="widget-49-date-day">{{$category->events->count()}}</span>
+                                            <span class="widget-49-date-month"></span>
+                                        </div>
+                                        <div class="widget-49-meeting-info">
+                                            <span class="widget-49-pro-title"><strong>{{$category->name}}</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="widget-49-meeting-action">
+                                        <a href="{{route('show.categoryEvents',$category->id)}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Découvrir les événements </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                </div>
+
         </div>
     </section>
 
@@ -110,9 +158,11 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+    @vite('resources/js/search.js')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
 </body>
 
 </html>

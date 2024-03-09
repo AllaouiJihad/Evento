@@ -30,5 +30,11 @@ class Event extends Model
     public function tickets(){
         return $this->hasMany(Ticket::class);
     }
+    protected static function booted () {
+        static::deleting(function(Event $event) { // before delete() method call this
+             $event->tickets()->delete();
+             // do the rest of the cleanup...
+        });
+    }
 
 }
