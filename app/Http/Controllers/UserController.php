@@ -14,4 +14,16 @@ class UserController extends Controller
         
         return view('users',compact('users'));
     }
+
+    public function users(){
+        $users = User::where('role_id',2)->get();
+        return view('organisateurs',compact('users'));
+    }
+    public function banUser($user){
+        $ban = User::find($user);
+        $ban->role_id = 3;
+        $ban->status = 0;
+        $ban->save();
+        return redirect()->back();
+    }
 }

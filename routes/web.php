@@ -29,9 +29,9 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::get('/events', [EventController::class, 'getEvents'])->name('events.getEvents');
     Route::put('/events/{id}', [EventController::class, 'acceptEvent'])->name('accept.event');
 
-    Route::get('users', [UserController::class, 'getUsers'])->name('users.getUsers');
+    Route::get('demandes', [UserController::class, 'getUsers'])->name('users.getUsers');
 
-    Route::put('users/{id}', [EventController::class, 'acceptUserEvent'])->name('accept.eventUser');
+    Route::put('demandes/{id}', [EventController::class, 'acceptUserEvent'])->name('accept.eventUser');
 
     Route::get('categories', [CategoryController::class, 'index']);
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
@@ -39,6 +39,10 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::post('/categories', [CategoryController::class, 'store'])->name('category.store');
 
     Route::get('statistique',[EventController::class,'statistique'])->name('admin.statistique');
+
+    Route::get('users',[UserController::class,'users'])->name('admin.users');
+
+    Route::put('/user/{user}',[UserController::class,'banUser'])->name('user.ban');
 });
 // Organisateur
 Route::middleware(['organisateur', 'auth'])->group(function () {

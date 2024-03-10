@@ -20,7 +20,6 @@
                                 <th class="border-top-0">#</th>
                                 <th class="border-top-0">Nom</th>
                                 <th class="border-top-0">Email</th>
-                                <th class="border-top-0">Titre</th>
                                 <th class="border-top-0">Role</th>
                                 <th>action</th>
                             </tr>
@@ -28,34 +27,27 @@
                         <tbody>
                             
                             @foreach ($users as $user)
-                            @if ($user->events->isNotEmpty())
                                 
                             
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td class="txt-oflo">{{ $user->name }}</td>
                                     <td class="txt-oflo">{{ $user->email}}</td>
-                                    <td class="txt-oflo">{{ $user?->events[0]->title}}</td>
                                     @if ($user->role_id == 2) 
                                     <td class="txt-oflo" style="color: #B197FC;">Organisateur</td>
-                                    @elseif ($user->role_id == 3)
-                                    <td class="txt-oflo" style="color: #22a2c9;">Utilisateur</td>
                                     @endif
                                     
                                     <td>
-                                        <form method="POST" action="{{ route('accept.eventUser',$user->id) }}">
+                                        <form method="POST" action="{{ route('user.ban',$user) }}">
                                             @csrf
                                             @method('PUT')
-                                            <input type="hidden" name="event_id" value="{{$user->events->id}}">
-                                            <button type="submit"><i class="fa-solid fa-check"
-                                                    style="color: #4c9a82;"></i></button>
+                                            <button type="submit"><i class="fa-solid fa-ban" style="color: #db002c;"></i></button>
 
                                         </form>
                                     </td>
 
 
                                 </tr>
-                                @endif
                             @endforeach
 
                             

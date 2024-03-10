@@ -135,10 +135,10 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/users"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/demandes"
                                 aria-expanded="false">
                                 <i class="fa-solid fa-users"></i>
-                                <span class="hide-menu">Utilisateurs</span>
+                                <span class="hide-menu">Les Demandes</span>
                             </a>
                         </li>
 
@@ -148,6 +148,13 @@
                                 aria-expanded="false">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
                                 <span class="hide-menu">Categories</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/users"
+                                aria-expanded="false">
+                                <i class="fa-solid fa-users"></i>
+                                <span class="hide-menu">Les Utilisateurs</span>
                             </a>
                         </li>
 
