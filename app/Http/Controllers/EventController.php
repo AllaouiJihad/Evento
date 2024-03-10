@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Models\Category;
+use App\Models\Reservation;
 use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -168,5 +169,22 @@ class EventController extends Controller
         $event = Event::where('status',0)->count();
         $user = User::where('role_id',3)->count();
         return view('admin_statistique',compact('organisateur','event','user'));
+    }
+
+    public function myStatistique(){
+        $event = Event::where('user_id',Auth::id())->where('status',0)->count();
+        $event_non = Event::where('user_id',Auth::id())->where('status',1)->count();
+
+        $reservation_confirme =  Reservation::join('tickets', 'reservations.ticket_id', '=', 'tickets.id')
+        ->join('events', 'tickets.event_id', '=', 'events.id')
+        ->where('events.user_id', Auth::id())
+        ->where('reservations.status', 1)
+        ->count();
+        $reservations = Reservation::join('tickets', 'reservations.ticket_id', '=', 'tickets.id')
+        ->join('events', 'tickets.event_id', '=', 'events.id')
+        ->where('events.user_id', 4)
+        ->where('reservations.status', 0)
+        ->count();
+        return view('organi_statistique',compact('event','reservation_confirme','reservations','event_non'));
     }
 }

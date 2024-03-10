@@ -52,6 +52,8 @@ Route::middleware(['organisateur', 'auth'])->group(function () {
     Route::delete('myevents/{event}', [EventController::class, 'destroy'])->name('event.destroy');
 
     Route::put('myevents/tickets/{event}', [TicketController::class, 'edit'])->name('ticket.edit');
+
+    Route::get('messtatistique',[EventController::class,'myStatistique'])->name('org.statistique');
 });
 
 

@@ -63,6 +63,9 @@
                                         <li>
                                             <a href="{{route('Myevents')}}" class="dropdown-item">Mes Événements</a>
                                         </li>
+                                        <li>
+                                            <a href="{{route('org.statistique')}}" class="dropdown-item"> Les statistiques</a>
+                                        </li>
 
                                         @endif
                                         <li>
