@@ -57,8 +57,16 @@
                                                 </button>
                                             </form>
                                         </li>
+                                        @if (Auth::user()->role_id == 2)
+                                            
+                                        
                                         <li>
                                             <a href="{{route('Myevents')}}" class="dropdown-item">Mes Événements</a>
+                                        </li>
+
+                                        @endif
+                                        <li>
+                                            <a href="{{route('user.reservation')}}" class="dropdown-item">Mes Reservations</a>
                                         </li>
                                     </ul>
                                 </div>

@@ -17,7 +17,12 @@
 					    <div class="card-text pt-1">
 						    <h5 class="member-name mb-0 text-center text-primary font-weight-bold">{{ $event->title}}</h5>
 						    <div class="mb-3 text-center">{{ $event->category->name }}</div>
-						
+							@if ( $event->status == 0 )
+							<div class="mb-3 text-center">Etat : <strong style="color: #d2841e">Publier</strong></div>
+							@elseif ($event->status == 1 )
+							<div class="mb-3 text-center">Etat : <strong style="color: #2b70ae">En train de traiter</strong></div>
+							@endif
+							
 					    </div>
 				    </div><!--//card-body-->
 				    <div class="card-footer theme-bg-primary border-0 text-center">

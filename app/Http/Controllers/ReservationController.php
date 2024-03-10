@@ -56,6 +56,18 @@ class ReservationController extends Controller
         return view('reservations',compact('reservations'));
 
     }
+
+    public function userReservation(){
+        // $reservations = Reservation::where('user_id',Auth::id())->get();
+        $reservations = DB::table('tickets')
+        ->join('events','tickets.event_id','=','events.id')
+        ->join('reservations','tickets.id','=','reservations.ticket_id')
+        ->select('events.title','events.media','tickets.price','tickets.type','reservations.*')
+        ->where('reservations.user_id',Auth::id())->get();
+        // dd($reservations);
+        return view('my_reservation',compact('reservations'));
+        
+    }
     public function index()
     {
         //
@@ -110,6 +122,7 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+        return redirect()->back();
     }
 }
