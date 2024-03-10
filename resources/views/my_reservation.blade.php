@@ -55,6 +55,7 @@
                                       <i class="fas fa-trash"></i>
                                   </button>
                                 </form>
+                                <a href="{{route('generatePDF',$reservation->ticket_id)}}">telecharger</a>
                               </div>
                           </td>
                       </tr>

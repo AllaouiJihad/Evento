@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TicketController;
@@ -36,6 +37,8 @@ Route::middleware(['admin', 'auth'])->group(function () {
     Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
     Route::put('categories/', [CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/categories', [CategoryController::class, 'store'])->name('category.store');
+
+    Route::get('statistique',[EventController::class,'statistique'])->name('admin.statistique');
 });
 // Organisateur
 Route::middleware(['organisateur', 'auth'])->group(function () {
@@ -79,6 +82,8 @@ Route::middleware('auth')->group(function () {
     Route::post('event', [ReservationController::class, 'reserve'])->name('reserve');
     Route::get('/myreservation', [ReservationController::class, 'userReservation'])->name('user.reservation');
     Route::delete('/myreservation/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
+
+    Route::get('/generate-pdf/{ticket}', [PDFController::class, 'generatePDF'])->name('generatePDF');;
 });
 
 

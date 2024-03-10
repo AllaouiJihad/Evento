@@ -62,7 +62,7 @@ class ReservationController extends Controller
         $reservations = DB::table('tickets')
         ->join('events','tickets.event_id','=','events.id')
         ->join('reservations','tickets.id','=','reservations.ticket_id')
-        ->select('events.title','events.media','tickets.price','tickets.type','reservations.*')
+        ->select('events.title','events.media','tickets.price','tickets.type','tickets.id as ticket_id','reservations.*')
         ->where('reservations.user_id',Auth::id())->get();
         // dd($reservations);
         return view('my_reservation',compact('reservations'));

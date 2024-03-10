@@ -162,4 +162,11 @@ class EventController extends Controller
 
         return view('search')->with(['events' => $events, 'keyword' => $keyword]);
     }
+
+    public function statistique(){
+        $organisateur = User::where('role_id',2)->count();
+        $event = Event::where('status',0)->count();
+        $user = User::where('role_id',3)->count();
+        return view('admin_statistique',compact('organisateur','event','user'));
+    }
 }
